@@ -1,5 +1,5 @@
 <div
-  class="w-12 h-full flex align-items-center justify-content-around flex-wrap gap-5 p-5"
+  class="w-12 h-full mt-8 flex align-items-center justify-content-around flex-wrap gap-5 p-5 flex-column sm:flex-row"
 >
   @for (category of categories; track $index) {
   <div class="w-20rem h-27rem bg-bluegray-100 border-round-xl">
@@ -42,11 +42,11 @@
               {{ "$" + product.price }}
             </div>
             <span>
-              <p-button
+              <!-- <p-button
                 icon="pi pi-heart"
                 severity="secondary"
                 [outlined]="true"
-              />
+              /> -->
               <p-button
                 icon="pi pi-shopping-cart"
                 styleClass="ml-2"
@@ -57,8 +57,10 @@
         </div>
       </ng-template>
     </p-carousel>
+    <p-toast />
     <!-- @for (product of category.products; track $index) { } -->
   </div>
+
   }
   <app-modal [visible]="visible" (dismiss)="onModalDismiss()">
     <div modalContent class="h-10rem">

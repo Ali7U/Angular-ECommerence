@@ -9,6 +9,9 @@ import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { ModalComponent } from '../../shared/modal/modal.component';
 import { CartService } from '../../services/cart.service';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+import { RippleModule } from 'primeng/ripple';
 
 @Component({
   selector: 'app-main',
@@ -19,7 +22,9 @@ import { CartService } from '../../services/cart.service';
     TagModule,
     ModalComponent,
     DialogModule,
+    ToastModule,
   ],
+  providers: [MessageService],
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss',
 })
@@ -33,7 +38,8 @@ export class MainComponent implements OnInit {
 
   constructor(
     private productService: ProductsService,
-    private cartService: CartService
+    private cartService: CartService,
+    private messageService: MessageService
   ) {}
 
   ngOnInit() {
@@ -80,7 +86,16 @@ export class MainComponent implements OnInit {
   }
 
   addToCart(product: Product) {
-    this.cartService.addToCart(product)
+    this.cartService.addToCart(product);
+    this.show();
   }
 
+  show() {
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Success',
+      detail: 'Add to cart successfully',
+      life: 220000,
+    });
+  }
 }
