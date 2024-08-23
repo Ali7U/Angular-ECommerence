@@ -57,11 +57,11 @@
         </div>
       </ng-template>
     </p-carousel>
-    <p-toast />
     <!-- @for (product of category.products; track $index) { } -->
   </div>
 
   }
+  <p-toast />
   <app-modal [visible]="visible" (dismiss)="onModalDismiss()">
     <div modalContent class="h-10rem">
       <h3 class="text-lg">{{ description }}</h3>
