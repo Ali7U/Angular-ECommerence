@@ -1,0 +1,78 @@
+<div
+  class="w-12 h-full flex align-items-center justify-content-around flex-wrap gap-5 p-5"
+>
+  @for (category of categories; track $index) {
+  <div class="w-20rem h-27rem bg-bluegray-100 border-round-xl">
+    <h2 class="text-center">{{ category.name }}</h2>
+    <p-carousel
+      [value]="category.products"
+      [numVisible]="1"
+      [numScroll]="1"
+      orientation="vertical"
+      verticalViewPortHeight="330px"
+    >
+      <ng-template let-product pTemplate="item">
+        <div class="border-1 surface-border border-round m-2 p-3">
+          <div class="mb-3">
+            <div class="relative mx-auto">
+              <img
+                [src]="product.images"
+                [alt]="product.name"
+                class="w-full border-round h-13rem"
+              />
+              <p-tag
+                [value]="product.inventoryStatus"
+                [severity]="getSeverity(product.inventoryStatus)"
+                class="absolute"
+                [ngStyle]="{ 'left.px': 5, 'top.px': 5 }"
+              />
+            </div>
+          </div>
+          <div
+            class="mb-3 font-medium flex align-items-center justify-content-between"
+          >
+            <h4>{{ product.name }}</h4>
+            <i
+              class="pi pi-info-circle cursor-pointer text-primary"
+              (click)="showDialog(product.description, product.stock)"
+            ></i>
+          </div>
+          <div class="flex justify-content-between align-items-center">
+            <div class="mt-0 font-semibold text-xl">
+              {{ "$" + product.price }}
+            </div>
+            <span>
+              <p-button
+                icon="pi pi-heart"
+                severity="secondary"
+                [outlined]="true"
+              />
+              <p-button
+                icon="pi pi-shopping-cart"
+                styleClass="ml-2"
+                (onClick)="addToCart(product)"
+              />
+            </span>
+          </div>
+        </div>
+      </ng-template>
+    </p-carousel>
+    <!-- @for (product of category.products; track $index) { } -->
+  </div>
+  }
+  <app-modal [visible]="visible" (dismiss)="onModalDismiss()">
+    <div modalContent class="h-10rem">
+      <h3 class="text-lg">{{ description }}</h3>
+      <p class="text-center">Stock: {{ stock }}</p>
+    </div>
+
+    <div modalFooter>
+      <button
+        pButton
+        label="Ok"
+        class="w-10rem"
+        (click)="visible = false"
+      ></button>
+    </div>
+  </app-modal>
+</div>

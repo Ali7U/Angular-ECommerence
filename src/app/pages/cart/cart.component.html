@@ -1,0 +1,36 @@
+<div class="flex align-items-center justify-content-start h-30rem flex-column">
+  <p-table [value]="cart" [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template pTemplate="header">
+      <tr class="h-4rem">
+        <th>Image</th>
+        <th>Name</th>
+        <th>Quantity</th>
+        <th>Price</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product>
+      <tr>
+        <td>
+          <img class="h-4rem w-5" [src]="product.image" alt="" />
+        </td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.quantity }}</td>
+        <td>{{ product.price * product.quantity | currency }}</td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="5">cart is empty.</td>
+      </tr>
+    </ng-template>
+  </p-table>
+  @if (totalPrice) {
+  <h4 class="algin-self-start">Total Price: {{ totalPrice | currency }}</h4>
+  }
+  <button
+    pButton
+    (click)="clearLocalStorage()"
+    class="w-8rem h-2rem my-3"
+    label="clear"
+  ></button>
+</div>
