@@ -95,7 +95,6 @@ export class MainComponent implements OnInit {
       severity: 'success',
       summary: 'Success',
       detail: 'Add to cart successfully',
-      life: 220000,
     });
   }
 }
