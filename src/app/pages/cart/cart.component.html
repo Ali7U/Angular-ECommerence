@@ -1,24 +1,21 @@
 <div
   class="flex align-items-center justify-content-start h-30rem flex-column overflow-scroll"
 >
-  <p-table
-    [value]="cart"
-    class="w-11 sm:w-9"
-  >
+  <p-table [value]="cart" class="w-11 sm:w-9">
     <ng-template pTemplate="header">
       <tr class="h-4rem">
-        <th>Image</th>
         <th>Name</th>
+        <th>Image</th>
         <th>Quantity</th>
         <th>Price</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-product class="overflow-scroll">
       <tr>
-        <td>
-          <img class="h-4rem w-5" [src]="product.image" alt="" />
-        </td>
         <td>{{ product.name }}</td>
+        <td>
+          <img class="h-4rem w-9 sm:w-5 border-round-md	" [src]="product.image" alt="" />
+        </td>
         <td>{{ product.quantity }}</td>
         <td>{{ product.price * product.quantity | currency }}</td>
       </tr>
